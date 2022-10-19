@@ -7,11 +7,9 @@
 #  необходимо организовать просмотр информации из справочника (генерируемого или загружаемого).
 # В качестве формата файла можно использовать форматы csv, json, xml
 
-from ast import match_case
-from nis import match
+r
 import random
 import csv
-from re import Match
 
 def randUser(how):
     firstName = ['Иван','Андрей','Олег','Константин','Аркадий','Фёдр','Алексей','Евгений','Николай','Александр','Виктор','Максим','Пётр','Крилл']
@@ -54,7 +52,7 @@ def loadUsers():
         for row in reader:
             user = ''
             for column in row:
-                user = user + column
+                user = user + column + ' '
             lst.append(user)
     print('Список загружен')
     f.close()
@@ -69,18 +67,17 @@ def showUsers(users):
 
 def interf(users):
     a = input('Сгенерировать список (r), загрузить список(l), сохранить список(s), показать список(sh): ')
-    match a:
-        case 'r':
-            how = int(input('Кол-во строк: '))
-            users = randUser(how)
-        case 'l':
-            users = loadUsers()
-        case 's':
-            saveUsers(users)
-        case 'sh':
-            showUsers(users)
-        case _:
-            print('Введите корректный код')
+    if a == 'r':
+        how = int(input('Кол-во строк: '))
+        users = randUser(how)
+    elif a == 'l':
+        users = loadUsers()
+    elif a == 's':
+        saveUsers(users)
+    elif a == 'sh':
+        showUsers(users)
+    else:
+        print('Введите корректный код')
     interf(users)
 
 
